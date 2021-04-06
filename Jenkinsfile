@@ -13,90 +13,80 @@ pipeline {
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
+	gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
   }
-/*    Versiones disponibles
-      JDK8_Mac
-      JDK6_Centos
-      JDK7_Centos
-      JDK8_Centos
-      JDK10_Centos
-      JDK11_Centos
-      JDK13_Centos
-      JDK14_Centos
-*/
 
   //Aquí comienzan los “items” del Pipeline
-  stages{
-    stage('Checkout') {
-      steps{
-          echo "------------>Checkout<------------"
-          checkout([
-          $class: 'GitSCM',
-          branches: [[name: '*/master']], // Cambiar por la rama definida en el repositorio
-          doGenerateSubmoduleConfigurations: false,
-          extensions: [],
-          gitTool: 'Default',
-          submoduleCfg: [],
-          userRemoteConfigs: [[
-          credentialsId: 'GitHub_ygomez',
-          url:'https://github.com/repodesa/cuatro-ruedas-exa' //Cambiar por la ruta del repositorio
-          ]]
-          ])
-      }
+	stages{
+		stage('Checkout') {
+			steps{
+				echo "------------>Checkout<------------"
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: '*/master']], // Cambiar por la rama definida en el repositorio
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					gitTool: 'Default',
+					submoduleCfg: [],
+					userRemoteConfigs: [[
+						credentialsId: 'GitHub_ygomez',
+						url:'https://github.com/repodesa/cuatro-ruedas-exa' //Cambiar por la ruta del repositorio
+					]]
+				])
+			}
+		}
 
-    }
-	
-    stage('Clean') {
-        steps {
-            echo "------------>Clean<------------"
-            sh 'chmod +x ./comun/gradlew'
-            sh './comun/gradlew -b ./microservicio/build.gradle clean'
+        stage('Clean') {
+            steps {
+                echo "------------>Clean<------------"
+                sh 'chmod +x ./comun/gradlew'
+                sh './comun/gradlew -b ./microservicio/build.gradle clean'
+            }
+        }
+
+        stage('Compile & Unit Tests') {
+            steps {
+                echo "------------>Unit Tests<------------"
+                sh './comun/gradlew -b ./microservicio/build.gradle test'
+                sh './comun/gradlew -b ./microservicio/build.gradle jacocoTestReport'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "------------>Build<------------"
+                sh './comun/gradlew -b ./microservicio/build.gradle build -x test'
+            }
+        }
+
+        stage('Static Code Analysis') {
+            steps {
+                echo '------------>Análisis de código estático<------------'
+                withSonarQubeEnv('Sonar') {
+                    sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/sonar-project.properties"
+                }
+            }
         }
     }
 
-    stage('Compile & Unit Tests') {
-        steps {
-            echo "------------>Unit Tests<------------"
-            sh './comun/gradlew -b ./microservicio/build.gradle test'
-            sh './comun/gradlew -b ./microservicio/build.gradle jacocoTestReport'
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+            junit 'microservicio/dominio/build/test-results/test/*.xml'
+            junit 'microservicio/infraestructura/build/test-results/test/*.xml'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
         }
     }
-
-    stage('Build') {
-        steps {
-            echo "------------>Build<------------"
-            sh './comun/gradlew -b ./microservicio/build.gradle build -x test'
-        }
-    }
-
-    stage('Static Code Analysis') {
-      steps{
-        echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/sonar-project.properties"
-        }
-      }
-    }
-
-  post {
-    always {
-      echo 'This will always run'
-    }
-    success {
-        echo 'This will run only if successful'
-        junit 'build/test-results/test/*.xml' //RUTA DE TUS ARCHIVOS .XML
-    }
-
-    failure {
-        echo 'This will run only if failed'
-        mail (to: 'yefry.gomez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
-    }
-    unstable {
-      echo 'This will run only if the run was marked as unstable'
-    }
-    changed {
-      echo 'This will run only if the state of the Pipeline has changed'
-      echo 'For example, if the Pipeline was previously failing but is now successful'
-    }
-  }
 }
