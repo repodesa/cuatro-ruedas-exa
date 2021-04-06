@@ -32,14 +32,14 @@ pipeline {
           echo "------------>Checkout<------------"
           checkout([
           $class: 'GitSCM',
-          branches: [[name: '*/main']], // Cambiar por la rama definida en el repositorio
+          branches: [[name: '*/master']], // Cambiar por la rama definida en el repositorio
           doGenerateSubmoduleConfigurations: false,
           extensions: [],
           gitTool: 'Default',
           submoduleCfg: [],
           userRemoteConfigs: [[
           credentialsId: 'GitHub_ygomez',
-          url:'https://github.com/repodesa/cuatro-ruedas' //Cambiar por la ruta del repositorio
+          url:'https://github.com/repodesa/cuatro-ruedas-exa' //Cambiar por la ruta del repositorio
           ]]
           ])
       }
