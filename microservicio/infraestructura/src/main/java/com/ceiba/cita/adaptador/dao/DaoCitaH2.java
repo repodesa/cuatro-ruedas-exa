@@ -1,11 +1,9 @@
 package com.ceiba.cita.adaptador.dao;
 
-import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
-import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.cita.modelo.dto.DtoCita;
 import com.ceiba.cita.puerto.dao.DaoCita;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
+import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

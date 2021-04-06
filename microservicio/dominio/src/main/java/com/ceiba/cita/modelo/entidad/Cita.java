@@ -8,7 +8,6 @@ import java.time.LocalTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
-;
 
 @Getter
 @ToString
@@ -16,7 +15,6 @@ public class Cita {
 
     private static final String FEHCHA_SALIDA_MAYOR_FECHA_ENTRADA = "La fecha de salida debe ser mayor a la fecha de entrada.";
     private static final String FECHA_ENTRADA_MAYOR_QUE_FECHA_REGISTRO = "El sistema solo permite fechas de salidas superiores a hoy.";
-    private static final String VALOR_DIFERENTE_NULO = "Defina un valor para la Cita mayor a Cero(0).";
     private static final String VALOR_MAYOR_CERO = "El Valor de la cita NO puede ser igual o menor a Cero (0).";
     private static final String HORA_ENTRADA_RANGO_VALIDO = "La hora debe estar en el rango de ";
 

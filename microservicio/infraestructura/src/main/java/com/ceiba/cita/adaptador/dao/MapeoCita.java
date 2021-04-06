@@ -2,8 +2,6 @@ package com.ceiba.cita.adaptador.dao;
 
 import com.ceiba.cita.modelo.dto.DtoCita;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -12,8 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MapeoCita implements RowMapper<DtoCita>, MapperResult {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MapeoCita.class);
 
     @Override
     public DtoCita mapRow(ResultSet rs, int rowNum) throws SQLException {
