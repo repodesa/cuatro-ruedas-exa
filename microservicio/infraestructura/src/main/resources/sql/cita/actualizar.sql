@@ -1,0 +1,1 @@
+update cita set placa_vehiculo = :placa_vehiculo, id_cliente = :id_cliente, fecha_registro = :fecha_registro, fecha_entrada = :fecha_registro, hora_entrada = :fecha_registro, fecha_salida = :fecha_registro, hora_salida = :fecha_registro, valor = :fecha_registro where id = :id

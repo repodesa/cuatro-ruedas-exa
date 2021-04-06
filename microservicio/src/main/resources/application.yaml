@@ -1,0 +1,38 @@
+jasypt:
+   encryptor:
+      password: ${TLVhpSkOHoQGBvFBelHqdA==:sa}
+      algorithm: PBEWithMD5AndDES
+
+server:
+   port: 8080
+   servlet:
+      context-path: /cita
+      session:
+         timeout: 21600s
+
+#spring:
+   #datasource:
+      #driver-class-name: org.h2.Driver
+      #type: com.zaxxer.hikari.HikariDataSource
+      #jdbcUrl: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+      #jdbcUrl: jdbc:h2:mem:testdb
+      #username: sa
+      #password: ENC(TLVhpSkOHoQGBvFBelHqdA==)
+      #hikari:
+       #  poolName: pool
+
+spring:
+   datasource:
+      driver-class-name: org.h2.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      password: ''
+      platform: h2
+      jdbcUrl: jdbc:h2:mem:testdb
+      #jdbcUrl: jdbc:h2:mem:~/biblioteca
+      username: sa
+      hikari:
+         poolName: pool
+   h2:
+      console:
+         enabled: true
+         path: /h2
