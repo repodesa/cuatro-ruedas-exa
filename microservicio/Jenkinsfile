@@ -45,6 +45,7 @@ pipeline {
       }
 
     }
+    /*
 
     stage('Clean') {
             steps {
@@ -62,15 +63,6 @@ pipeline {
         }
     }
 
-    stage('Static Code Analysis') {
-      steps{
-        echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
-      }
-    }
-
     stage('Build') {
         steps{
             echo "------------>Build<------------"
@@ -80,6 +72,38 @@ pipeline {
         }
     }
   }
+    */
+    stage('Clean') {
+        steps {
+            echo "------------>Clean<------------"
+            sh 'chmod +x ./comun/gradlew'
+            sh './comun/gradlew -b ./microservicio/build.gradle clean'
+        }
+    }
+
+    stage('Compile & Unit Tests') {
+        steps {
+            echo "------------>Unit Tests<------------"
+            sh './comun/gradlew -b ./microservicio/build.gradle test'
+            sh './comun/gradlew -b ./microservicio/build.gradle jacocoTestReport'
+        }
+    }
+
+    stage('Build') {
+        steps {
+            echo "------------>Build<------------"
+            sh './comun/gradlew -b ./microservicio/build.gradle build -x test'
+        }
+    }
+
+    stage('Static Code Analysis') {
+      steps{
+        echo '------------>Análisis de código estático<------------'
+        withSonarQubeEnv('Sonar') {
+        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/sonar-project.properties"
+        }
+      }
+    }
 
   post {
     always {
