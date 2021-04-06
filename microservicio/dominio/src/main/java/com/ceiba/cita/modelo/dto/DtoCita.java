@@ -9,7 +9,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Getter
 public class DtoCita {
-    private Long Id;
+    private Long id;
     private String placaVehiculo;
     private String idCliente;
     private LocalDate fechaRegistro;

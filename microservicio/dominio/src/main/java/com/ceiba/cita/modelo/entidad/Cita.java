@@ -1,7 +1,6 @@
 package com.ceiba.cita.modelo.entidad;
 
 import lombok.Getter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,7 +9,6 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 
 
 @Getter
-@ToString
 public class Cita {
 
     private static final String FEHCHA_SALIDA_MAYOR_FECHA_ENTRADA = "La fecha de salida debe ser mayor a la fecha de entrada.";
