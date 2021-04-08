@@ -1,0 +1,40 @@
+<div fxFlex="value%" fxFlexOrder="order">
+    <h1>
+        <p class="text-center fst-italic">Listado de citas programadas</p>
+    </h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha Registro</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Id Cliente</th>
+                        <th scope="col">Fecha Entrada</th>
+                        <th scope="col">Hora Entrada</th>
+                        <th scope="col">Fecha Salida</th>
+                        <th scope="col">Fecha Entrada</th>
+                        <th scope="col">Valor $</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let itemCita of listaCitas | async">
+                        <td>{{itemCita.fechaRegistro}}</td>
+                        <td>{{itemCita.id}}</td>
+                        <td>{{itemCita.placaVehiculo}}</td>
+                        <td>{{itemCita.idCliente}}</td>
+                        <td>{{itemCita.fechaEntrada}}</td>
+                        <td>{{itemCita.horaEntrada}}</td>
+                        <td>{{itemCita.fechaSalida}}</td>
+                        <td>{{itemCita.horaSalida}}</td>
+                        <td>{{itemCita.valor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

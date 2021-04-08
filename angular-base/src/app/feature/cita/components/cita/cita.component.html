@@ -1,0 +1,13 @@
+<nav>
+  <div class="card">
+    <div class="card-header">
+      <a id="linkCita" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    </div>
+    <div class="card-body">
+      <a id="linkListarCitas" routerLink="./listar" routerLinkActive="active"> Listar </a>
+      <br>
+      <a id="linkCrearCita" routerLink="./crear" routerLinkActive="active">  Crear </a>      
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
