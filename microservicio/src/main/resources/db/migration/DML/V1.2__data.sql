@@ -1,3 +1,11 @@
-insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor)
-values ('KIP059', '16883285', '2021-04-06', '2021-04-06', NOW(), '2021-04-07', NOW(), 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('KIP728', '31626728', '2021-04-08', '2021-04-08', '07:00:00', '2021-04-08', '07:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('KIP058', '31626136', '2021-04-08', '2021-04-08', '08:00:00', '2021-04-08', '08:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('KIP059', '16883285', '2021-04-08', '2021-04-08', '09:00:00', '2021-04-08', '09:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('JIK227', '1113522472', '2021-04-08', '2021-04-08', '10:00:00', '2021-04-08', '10:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('COI903', '31626136', '2021-04-08', '2021-04-08', '11:00:00', '2021-04-08', '11:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('DIS245', '16883285', '2021-04-08', '2021-04-08', '12:00:00', '2021-04-08', '12:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('BHM983', '1113522470', '2021-04-08', '2021-04-08', '13:00:00', '2021-04-08', '14:00:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('IPK025', '16883284', '2021-04-08', '2021-04-08', '14:01:00', '2021-04-08', '14:59:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('IPK000', '16854789', '2021-04-08', '2021-04-08', '15:00:00', '2021-04-08', '16:00:00', 10000);
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values ('COI000', '1113569874', '2021-04-08', '2021-04-08', '16:01:00', '2021-04-08', '17:00:00', 10000);
 COMMIT;

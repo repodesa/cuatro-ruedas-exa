@@ -22,7 +22,6 @@ public class ServicioCrearCita {
 
 
     public Long ejecutar(Cita cita) {
-
         LocalDate fechaEntradaVehiculo = cita.getFechaEntrada();
         LocalDate fechaSalidaVehiculo = cita.getFechaSalida();
 
@@ -48,7 +47,7 @@ public class ServicioCrearCita {
     }
 
     private boolean cantidadDeCitasPorDiasSobrePasaPermitidas(LocalDate fecha) {
-        return (repositorioCita.cantidadCitasPorFecha(fecha) > CANTIDAD_CITAS_DIARIAS);
+        return (repositorioCita.cantidadCitasPorFecha(fecha) >= CANTIDAD_CITAS_DIARIAS);
     }
 
 }

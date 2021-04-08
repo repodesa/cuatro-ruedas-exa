@@ -25,9 +25,4 @@ public class DaoCitaH2 implements DaoCita {
     public List<DtoCita> Listar() {
         return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoCita());
     }
-
-    @Override
-    public List<DtoCita> obtenerCitasPorFecha(LocalDate fecha) {
-        return null;
-    }
 }

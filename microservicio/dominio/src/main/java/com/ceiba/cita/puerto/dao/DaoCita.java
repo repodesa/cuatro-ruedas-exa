@@ -12,12 +12,4 @@ public interface DaoCita {
      * @return
      */
     List<DtoCita> Listar ();
-
-
-    /**
-     * Obtener citas programadas de acuerdo a una fecha.
-     * @param fecha fecha para consultar citas.
-     * @return las citas programadas de acuerdo a una fecha enviada
-     */
-    List<DtoCita> obtenerCitasPorFecha (LocalDate fecha);
 }
