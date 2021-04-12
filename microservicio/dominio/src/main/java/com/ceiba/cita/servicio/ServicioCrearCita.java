@@ -9,7 +9,6 @@ import java.time.LocalDate;
 public class ServicioCrearCita {
 
     public static final Integer CANTIDAD_CITAS_DIARIAS = 10;
-    public static final Integer INCREMENTO_VALOR_DIA_FESTIVO = 2;
 
     private static final String EXISTE_UNA_CITA_PROGRAMADA_PARA_EL_VEHICLO_EN_LA_FECHA = "El vehículo ya tiene agendado una cita para la misma fecha.";
     private static final String EXISTE_UNA_CITA_PROGRAMADA_EN_LA_FECHA_HORA = "Ya existe una cita agendada en la misma hora y fecha.";
@@ -23,19 +22,14 @@ public class ServicioCrearCita {
 
     public Long ejecutar(Cita cita) {
         LocalDate fechaEntradaVehiculo = cita.getFechaEntrada();
-        LocalDate fechaSalidaVehiculo = cita.getFechaSalida();
 
         if (cantidadDeCitasPorDiasSobrePasaPermitidas(fechaEntradaVehiculo)) {
-            cita.setFechaEntrada(fechaEntradaVehiculo.plusDays(1));
-            cita.setFechaSalida(fechaSalidaVehiculo.plusDays(1));
+            cita.incrementaDiaCitaProgramada();
         }
 
         if (ServicioCalendario.esDiaFestivo(fechaEntradaVehiculo)) {
-            cita.setValor(cita.getValor() * INCREMENTO_VALOR_DIA_FESTIVO);
+            cita.duplicaValorPorDiaFestivo();
         }
-
-        cita.setFechaEntrada(fechaEntradaVehiculo.plusDays(ServicioCalendario.diaHabilCalendario(fechaEntradaVehiculo)));
-        cita.setFechaSalida(fechaSalidaVehiculo.plusDays(ServicioCalendario.diaHabilCalendario(fechaSalidaVehiculo)));
 
         if (repositorioCita.existePorFechaVehiculo(fechaEntradaVehiculo, cita.getPlacaVehiculo())) {
             throw new ExcepcionDuplicidad(EXISTE_UNA_CITA_PROGRAMADA_PARA_EL_VEHICLO_EN_LA_FECHA);

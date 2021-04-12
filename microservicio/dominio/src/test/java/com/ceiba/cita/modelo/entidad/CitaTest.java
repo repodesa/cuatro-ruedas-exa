@@ -4,6 +4,7 @@ import com.ceiba.BasePrueba;
 import com.ceiba.cita.servicio.testdatabuilder.CitaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionFechaHora;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -76,6 +77,16 @@ public class CitaTest {
         CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conValor(null);
         //act - assert
         BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, VALOR_MAYOR_CERO);
+
+    }
+
+    @Test
+    public void validarValorIncrementadoDoble() {
+        //Arrange
+        Double valorIncrementoDoble = 20000.0;
+        Cita cita = new CitaTestDataBuilder().conFechaEntrada(LocalDate.of(2021, 05, 01)).conValor(10000.0).build();
+        //act - assert
+        Assert.assertEquals(cita.getValor(), valorIncrementoDoble);
 
     }
 }
