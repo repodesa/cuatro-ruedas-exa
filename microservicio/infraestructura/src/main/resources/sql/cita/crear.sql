@@ -1,1 +1,2 @@
-insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor) values (:placaVehiculo, :idCliente, :fechaRegistro, :fechaEntrada, :horaEntrada, :fechaSalida, :horaSalida, :valor)
+insert into cita (placa_vehiculo, id_cliente, fecha_registro, fecha_entrada, hora_entrada, fecha_salida, hora_salida, valor)
+values (:placaVehiculo, :idCliente, :fechaRegistro, :fechaEntrada, :horaEntrada, :fechaSalida, :horaSalida, :valor)

@@ -9,6 +9,7 @@ import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { CitaModule } from './feature/cita/cita.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProductoModule,
     CitaModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [CookieService],
     bootstrap: [AppComponent],

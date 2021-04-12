@@ -9,7 +9,7 @@ export const environment = {
 
 export const HOST_CITAS ={
   production: false,
-  endpoint: 'http://localhost:8080/cita'
+  endpoint: '/cita'
 };
 
 /*

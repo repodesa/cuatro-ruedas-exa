@@ -5,58 +5,55 @@
                 <p class="text-center fst-italic">{{titulo}}</p>
             </h1>
         </div>
-        <form>
-            <!--
+        <form [formGroup]="citaForm" (ngSubmit)="create()">
             <div class="alert alert-danger animated fadeIn" *ngIf="messageErro">{{ messageErro }}</div>
-            <div class="form-group row">
-                <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="cedula" [(ngModel)]="persona.perscedu">
-                </div>
-            </div>
-            -->
             <div class="row g-1">
                 <div class="col form-floating mb-3@ form-floating mb-2">
-                    <input type="text" class="form-control" placeholder="Placa" aria-label="PLACA" [(ngModel)]="cita.placaVehiculo" required>
-                    <label for="floatingInput">PLACA:</label>
+                    <input type="text" class="form-control" placeholder="Placa Vehiculo" aria-label="PLACA VEHICULO"
+                        id="placaVehiculo" formControlName="placaVehiculo" validar required>
+                    <label for="floatingInput">* PLACA VEHICULO:</label>
                 </div>
                 <div class="col form-floating mb-3@">
-                    <input type="text" class="form-control" placeholder="Id Cliente" aria-label="ID CLIENTE" [(ngModel)]="cita.idCliente" required>
-                    <label for="floatingInput">ID CLIENTE:</label>
-                </div>
-            </div>
-            <div class="row g-1 form-floating mb-2">
-                <div class="col form-floating mb-3@">
-                    <input type="date" class="form-control" placeholder="Fecha Entrada" aria-label="FECHA ENTRADA" [(ngModel)]="cita.fechaEntrada" required>
-                    <label for="floatingInput">FECHA ENTRADA:</label>
-                </div>
-                <div class="col form-floating mb-3@">
-                    <input type="time" class="form-control" placeholder="Hora Entrada" [(ngModel)]="cita.horaEntrada" required>
-                    <label for="floatingInput">HORA ENTRADA:</label>
+                    <input type="text" class="form-control" placeholder="Id Cliente" aria-label="ID CLIENTE"
+                        id="idCliente" formControlName="idCliente" validar required>
+                    <label for="floatingInput">* ID CLIENTE:</label>
                 </div>
             </div>
             <div class="row g-1 form-floating mb-2">
                 <div class="col form-floating mb-3@">
-                    <input type="date" class="form-control" placeholder="Fecha Salida" aria-label="FECHA SALIDA" [(ngModel)]="cita.fechaSalida">
-                    <label for="floatingInput">FECHA SALIDA:</label>
+                    <input type="date" class="form-control" placeholder="Fecha Entrada" aria-label="FECHA ENTRADA"
+                        id="fechaEntrada" formControlName="fechaEntrada" placeholder="yyyy-mm-dd" validar required>
+                    <label for="floatingInput">* FECHA ENTRADA:</label>
                 </div>
                 <div class="col form-floating mb-3@">
-                    <input type="time" class="form-control" placeholder="Hora Salida" [(ngModel)]="cita.horaSalida">
-                    <label for="floatingInput">HORA SALIDA:</label>
+                    <input type="time" class="form-control" placeholder="Hora Entrada" id="horaEntrada"
+                        formControlName="horaEntrada" required>
+                    <label for="floatingInput">* HORA ENTRADA:</label>
+                </div>
+            </div>
+            <div class="row g-1 form-floating mb-2">
+                <div class="col form-floating mb-3@">
+                    <input type="date" class="form-control" placeholder="Fecha Salida" aria-label="FECHA SALIDA"
+                        id="fechaSalida" formControlName="fechaSalida" required>
+                    <label for="floatingInput">* FECHA SALIDA:</label>
+                </div>
+                <div class="col form-floating mb-3@">
+                    <input type="time" class="form-control" placeholder="Hora Salida" id="horaSalida"
+                        formControlName="horaSalida" required>
+                    <label for="floatingInput">* HORA SALIDA:</label>
                 </div>
             </div>
             <div class="row g-1 form-floating mb-2">
                 <div class="col-sm-6 form-floating mb-3@">
-                    <input type="number" class="form-control" placeholder="Valor" aria-label="VALOR $" [(ngModel)]="cita.valor" required>
-                    <label for="floatingInput">VALOR $:</label>
+                    <input type="number" class="form-control" placeholder="Valor" aria-label="VALOR $" id="valor"
+                        formControlName="valor" validar required>
+                    <label for="floatingInput">* VALOR $:</label>
                 </div>
-                <!--
-                <div class="col">
-                    <input type="datetime-local" class="form-control" placeholder="Fecha y Hora de Registro" >
-                </div>
-                -->
             </div>
-            <button type="submit" class="btn btn-success" role="button" (click)='create()'>Registrar Cita</button>
+            <div class="alert alert-succes animated fadeIn" *ngIf="message">
+                <h2>{{ message }}</h2>
+            </div>
+            <button type="submit" class="btn btn-success" role="button">Registrar Cita</button>
         </form>
     </div>
 </div>
