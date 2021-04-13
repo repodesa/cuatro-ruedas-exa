@@ -28,12 +28,12 @@ describe('workspace-project Producto', () => {
         // expect(<>).toEqual(<>);
         
     });
-    /*
+    
     it('Deberia listar productos', () => {
         page.navigateTo();
         navBar.clickBotonProductos();
         producto.clickBotonListarProductos();
 
-        expect(4).toBe(producto.contarProductos());
-    });*/
+        expect(0).toBe(producto.contarProductos());
+    });
 });
