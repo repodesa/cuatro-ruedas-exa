@@ -128,7 +128,7 @@ public class ValidadorArgumento {
     public static void horaEntradaRangoValido(LocalTime ltHoraEntr, LocalTime ltHoraSali, String mensaje) {
         if (ltHoraEntr != null && ltHoraSali != null) {
             if (horaValida(ltHoraEntr) || horaValida(ltHoraSali)) {
-                throw new ExcepcionFechaHora(mensaje + HORA_INICIAL_VALIDA + ":00 a " + HORA_FINAL_VALIDA + ":00.");
+                throw new ExcepcionFechaHora(mensaje.concat(String.valueOf(HORA_INICIAL_VALIDA)).concat(":00 a ").concat(String.valueOf(HORA_FINAL_VALIDA)).concat(":00."));
             }
         } else {
             throw new ExcepcionFechaHora(DEFINA_UN_HORARIO_PARA_LA_CITA);

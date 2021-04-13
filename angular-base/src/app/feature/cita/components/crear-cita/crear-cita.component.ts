@@ -38,14 +38,18 @@ export class CrearCitaComponent implements OnInit {
   }
 
   create() {
+    console.log(this.citaForm);
     if (this.citaForm.valid) {
       this.citaService.guardar(this.citaForm.value).subscribe(data => {
         this.message = "Codigo de cita ["+data['valor']+"]";
+        this.messageErro = null;
       }, err => {
         this.messageErro = err.error.mensaje;
+        this.message = null;
       })
     }else {
       this.messageErro = "Diligencia el formulario correctamente..!"
+      this.message = null;
     }
   }
 }
