@@ -6,27 +6,32 @@ describe('espacio de trabajo - proejcto cita', () => {
     let pagina: AppPage;
     let barra: NavbarPage;
     let cita: CitaPage;
-
+    let cantidadRegistros:any;
     beforeEach(() => {
         pagina = new AppPage();
         barra = new NavbarPage();
         cita = new CitaPage();
     });
 
+    afterEach(()=>{
+        cantidadRegistros = cantidadRegistros;
+    });
+
     it('Deberia listar citas', () => {
         pagina.navigateTo();
         barra.clickBotonCitas();
         cita.clicBotonListarCita();
-        expect(cita.contarCitas()).toBe(cita.contarCitas());
+        cantidadRegistros = cita.contarCitas();
+        expect(cita.contarCitas()).toBe(10);
     });
 
     it('deberia crear la cita ', () => {
         const ID_PLACA = 'LOP098';
         const ID_CLIENTE = '123456789';
-        const FECHA_ENTRADA = '2021-04-16';
-        const FECHA_SALIDA = '2021-04-16';
-        const HORA_ENTRADA = '10:00';
-        const HORA_SALIDA = '11:00';
+        const FECHA_ENTRADA = '08-01-2021';
+        const FECHA_SALIDA = '08-02-2021';
+        const HORA_ENTRADA = '15:00';
+        const HORA_SALIDA = '16:00';
         const VALOR = '100000';
 
         pagina.navigateTo();
@@ -40,6 +45,8 @@ describe('espacio de trabajo - proejcto cita', () => {
         cita.ingresarHoraSalida(HORA_SALIDA);
         cita.ingresarValor(VALOR);
 
-        expect(cita.contarCitas()).toBeGreaterThanOrEqual(cita.contarCitas());
+        cita.clicBotonRegistrarCita();
+        
+        expect(cantidadRegistros).toBeGreaterThan(cita.contarCitas());
     });
 });

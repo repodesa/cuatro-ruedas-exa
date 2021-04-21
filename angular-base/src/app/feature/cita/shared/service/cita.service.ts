@@ -13,7 +13,6 @@ export class CitaService {
   }
 
   public guardar(cita: Cita) {
-    console.log("cita := "+cita)
     return this.http.doPost<Cita, boolean>(`${HOST_CITAS.endpoint}/citas`, cita, this.http.optsName('crear/actualiza citas'));
   }
 }

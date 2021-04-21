@@ -3,6 +3,7 @@ import { by, element } from "protractor";
 export class CitaPage {
     private linkCreaCita = element(by.id('linkCrearCita'));
     private linkListarCita = element(by.id('linkListarCitas'));
+    private botonRegistrar = element(by.id('registrar'));
     private listaCita = element.all(by.css('table tbody tr'));
     private inputplacaVehiculo = element(by.id('placaVehiculo'));
     private inputIdCliente = element(by.id('idCliente'));
@@ -11,6 +12,7 @@ export class CitaPage {
     private inputFechaSalida = element(by.id('fechaSalida'));
     private inputHoraSalida = element(by.id('horaSalida'));
     private inputValor = element(by.id('valor'));
+    //private inputMensajeError = element(by.id('error')).getText();
 
     async clicBotonCrearCita() {
         await this.linkCreaCita.click();
@@ -18,6 +20,10 @@ export class CitaPage {
 
     async clicBotonListarCita() {
         await this.linkListarCita.click();
+    }
+
+    async clicBotonRegistrarCita(){
+        await this.botonRegistrar.click();
     }
 
     async contarCitas() {
@@ -51,4 +57,9 @@ export class CitaPage {
     async ingresarValor(valor){
         await this.inputValor.sendKeys(valor);
     }
+/*
+    async salidaMensajeError(){
+        (await this.inputMensajeError).toString();
+    }
+*/    
 }

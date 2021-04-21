@@ -35,26 +35,53 @@ describe('CrearCitaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Debería crear el componente crear-cita', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
 
-  it('formulario vacio es invalido', () => {
+  it('formulario vacio es invalido', async(() => {
     expect(component.citaForm.valid).toBeFalsy();
-  });
+  }));
 
-  it('Registrando la cita Error', () => {
+  it('Debería NO construir el formulario', async(() => {
+    (<HTMLInputElement>document.getElementById('placaVehiculo')).value = null;
+    (<HTMLInputElement>document.getElementById('idCliente')).value = null;
+    (<HTMLInputElement>document.getElementById('fechaEntrada')).value = null;
+    (<HTMLInputElement>document.getElementById('horaEntrada')).value = null;
+    (<HTMLInputElement>document.getElementById('fechaSalida')).value = null;
+    (<HTMLInputElement>document.getElementById('horaSalida')).value = null;
+    (<HTMLInputElement>document.getElementById('valor')).value = null;    
+    component.create();
     expect(component.citaForm.valid).toBeFalsy();
+    expect(component.messageErro).toContain("Diligencia el formulario correctamente..!")
+    expect(component.message).toBeNull;
+  }));
+
+  it('Registrando la cita Error', async(() => {
     component.citaForm.controls.placaVehiculo.setValue('KIP059');
     component.citaForm.controls.idCliente.setValue('123456789');
-    component.citaForm.controls.fechaEntrada.setValue(new Date('2021-04-13'));
-    //component.citaForm.controls.horaEntrada.setValue('07:00 AM');
-    component.citaForm.controls.fechaSalida.setValue(new Date('2021-04-13'));
-    //component.citaForm.controls.horaSaldia.setValue('07:00 AM');
-    component.citaForm.controls.valor.setValue(10000.0);
-
-    expect(component.citaForm.valid).toBeTruthy
+    component.citaForm.controls.fechaEntrada.setValue('04-01-2021');
+    component.citaForm.controls.horaEntrada.setValue('06:00 AM');
+    component.citaForm.controls.fechaSalida.setValue('04-01-2021');
+    component.citaForm.controls.horaSalida.setValue('06:00 AM');
+    component.citaForm.controls.valor.setValue(10000.0);    
     component.create();
-    expect(component.citaForm.controls.id).toBeUndefined();
-  });
+    expect(component.citaForm.valid).toBeTruthy();    
+    expect(component.message).toBeNull;
+    expect(component.messageErro).not.toBeNull;
+  }));
+
+  it('Registrando la cita OK', async(() => {
+    component.citaForm.controls.placaVehiculo.setValue('KIP058');
+    component.citaForm.controls.idCliente.setValue('123456789');
+    component.citaForm.controls.fechaEntrada.setValue('04-17-2021');
+    component.citaForm.controls.horaEntrada.setValue('08:00 AM');
+    component.citaForm.controls.fechaSalida.setValue('04-17-2021');
+    component.citaForm.controls.horaSalida.setValue('09:00 AM');
+    component.citaForm.controls.valor.setValue(10000.0);    
+    component.create();
+    expect(component.citaForm.valid).toBeTruthy    
+    expect(component.message).toContain("Codigo de cita [");
+    expect(component.messageErro).toBeNull;
+  }));
 });

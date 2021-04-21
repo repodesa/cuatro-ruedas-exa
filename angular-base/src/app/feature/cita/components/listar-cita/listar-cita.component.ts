@@ -11,7 +11,7 @@ import { CitaService } from '../../shared/service/cita.service';
 export class ListarCitaComponent implements OnInit {
 
   titulo:String = "Listado de citas programadas.";
-  messageErro: String;
+  messageErro: String = null;
   public listaCitas: Observable<Cita[]>;
 
   constructor(protected citaServicio: CitaService) { }

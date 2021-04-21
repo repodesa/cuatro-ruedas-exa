@@ -15,7 +15,8 @@ describe('ListarCitaComponent', () => {
   let fixture: ComponentFixture<ListarCitaComponent>;
   let citaServicio: CitaService;
   let fecha = new Date();
-  const listarCita: Cita[] = [new Cita(1, 'KIP050', '1113522472', new Date('2021-04-20'), new Date('2021-04-20'), fecha.getHours(), new Date('2021-04-20'), fecha.getHours(), 120000)];
+  const listarCita: Cita[] =[new Cita(1, 'KIP050', '1113522472', new Date('2021-04-20'), new Date('2021-04-20'), fecha.getHours(), new Date('2021-04-20'), fecha.getHours(), 120000),
+  new Cita(1, 'COI903', '16883285', new Date('2021-04-20'), new Date('2021-04-21'), fecha.getHours(), new Date('2021-04-21'), fecha.getHours(), 120000)];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,10 +38,20 @@ describe('ListarCitaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Debería listar y conocer la cantidad de registros ', async(() => {
     expect(component).toBeTruthy();
     component.listaCitas.subscribe(resultado => {
-      expect(1).toBe(resultado.length);
-    });
-  });
+      expect(2).toBe(resultado.length);
+    })
+  }));
+
+  it('Debería validar el titulo del formulario', async(() => {
+    /*De esta manera se obtiene el valor del artefacto Html*/
+    const ficture = TestBed.createComponent(ListarCitaComponent);
+    ficture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('p').textContent).toContain('Listado de citas programadas.');
+    expect(compiled.querySelector('p').textContent).toBe(component.titulo);
+    expect(component.messageErro).toBeNull();
+  }));
 });

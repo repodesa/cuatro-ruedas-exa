@@ -6,7 +6,7 @@
             </h1>
         </div>
         <form [formGroup]="citaForm" (ngSubmit)="create()">
-            <div class="alert alert-danger animated fadeIn" *ngIf="messageErro">{{ messageErro }}</div>
+            <div class="alert alert-danger animated fadeIn" *ngIf="messageErro" id="error">{{ messageErro }}</div>
             <div class="row g-1">
                 <div class="col form-floating mb-3@ form-floating mb-2">
                     <input type="text" class="form-control" placeholder="Placa Vehiculo" aria-label="PLACA VEHICULO"
@@ -26,7 +26,7 @@
                     <label for="floatingInput">* FECHA ENTRADA:</label>
                 </div>
                 <div class="col form-floating mb-3@">
-                    <input type="time" class="form-control" placeholder="Hora Entrada" id="horaEntrada"
+                    <input type="text" class="form-control" placeholder="Hora Entrada" id="horaEntrada"
                         formControlName="horaEntrada" required>
                     <label for="floatingInput">* HORA ENTRADA:</label>
                 </div>
@@ -38,7 +38,7 @@
                     <label for="floatingInput">* FECHA SALIDA:</label>
                 </div>
                 <div class="col form-floating mb-3@">
-                    <input type="time" class="form-control" placeholder="Hora Salida" id="horaSalida"
+                    <input type="text" class="form-control" placeholder="Hora Salida" id="horaSalida"
                         formControlName="horaSalida" required>
                     <label for="floatingInput">* HORA SALIDA:</label>
                 </div>
@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="alert alert-succes animated fadeIn" *ngIf="message">
-                <h2>{{ message }}</h2>
+                <h2 id="message">{{ message }}</h2>
             </div>
-            <button type="submit" class="btn btn-success" role="button">Registrar Cita</button>
+            <button type="submit" class="btn btn-success" role="button" id="registrar">Registrar Cita</button>
         </form>
     </div>
 </div>

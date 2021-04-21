@@ -15,8 +15,8 @@ export class CrearCitaComponent implements OnInit {
 
   citaForm: FormGroup;
   titulo: String = "Registrar Cita";
-  messageErro: String;
-  message: String;
+  messageErro: String = null;
+  message: String = null;
   constructor(private citaService: CitaService) { }
 
   ngOnInit(): void {
@@ -38,7 +38,6 @@ export class CrearCitaComponent implements OnInit {
   }
 
   create() {
-    console.log(this.citaForm);
     if (this.citaForm.valid) {
       this.citaService.guardar(this.citaForm.value).subscribe(data => {
         this.message = "Codigo de cita ["+data['valor']+"]";
