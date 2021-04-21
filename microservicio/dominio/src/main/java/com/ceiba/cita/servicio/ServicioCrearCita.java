@@ -21,20 +21,19 @@ public class ServicioCrearCita {
 
 
     public Long ejecutar(Cita cita) {
-        LocalDate fechaEntradaVehiculo = cita.getFechaEntrada();
 
-        if (cantidadDeCitasPorDiasSobrePasaPermitidas(fechaEntradaVehiculo)) {
+        if (cantidadDeCitasPorDiasSobrePasaPermitidas(cita.getFechaEntrada())) {
             cita.incrementaDiaCitaProgramada();
         }
 
-        if (ServicioCalendario.esDiaFestivo(fechaEntradaVehiculo)) {
+        if (ServicioCalendario.esDiaFestivo(cita.getFechaEntrada())) {
             cita.duplicaValorPorDiaFestivo();
         }
 
-        if (repositorioCita.existePorFechaVehiculo(fechaEntradaVehiculo, cita.getPlacaVehiculo())) {
+        if (repositorioCita.existePorFechaVehiculo(cita.getFechaEntrada(), cita.getPlacaVehiculo())) {
             throw new ExcepcionDuplicidad(EXISTE_UNA_CITA_PROGRAMADA_PARA_EL_VEHICLO_EN_LA_FECHA);
         }
-        if (repositorioCita.existePorFechaHora(fechaEntradaVehiculo, cita.getHoraEntrada())) {
+        if (repositorioCita.existePorFechaHora(cita.getFechaEntrada(), cita.getHoraEntrada())) {
             throw new ExcepcionDuplicidad(EXISTE_UNA_CITA_PROGRAMADA_EN_LA_FECHA_HORA);
         }
         return repositorioCita.crear(cita);

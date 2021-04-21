@@ -21,7 +21,7 @@ public class CitaTestDataBuilder {
         placaVehiculo = "KIP059";
         idClilente = "31626136";
         fechaEntrada = LocalDate.now();
-        horaEntrada = LocalTime.of(7, 0, 0);
+        horaEntrada = LocalTime.of(9, 0, 0);
         fechaSalida = LocalDate.now().plusDays(1);
         horaSalida = LocalTime.of(9, 0, 0);
         valor = 10000.0;

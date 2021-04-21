@@ -10,10 +10,10 @@ create table cita (
  id int(11) not null auto_increment,
  placa_vehiculo varchar(6) not null,
  id_cliente varchar(22) null,
- fecha_registro datetime null,
- fecha_entrada datetime null,
+ fecha_registro date null,
+ fecha_entrada date null,
  hora_entrada time null,
- fecha_salida datetime null,
+ fecha_salida date null,
  hora_salida time null,
  valor int,
  primary key (id)

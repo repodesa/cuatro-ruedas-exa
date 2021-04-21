@@ -8,6 +8,7 @@ import com.ceiba.usuario.comando.ComandoUsuario;
 import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tomcat.jni.Local;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,7 +48,7 @@ public class ComandoControladorCitaTest {
 
     @Test
     public void validaCrearCitaOkTest() throws Exception {
-        comandoCita = new ComandoCitaTestDataBuilder().conFechaEntrada(LocalDate.now().plusDays(1)).build();
+        comandoCita = new ComandoCitaTestDataBuilder().conFechaEntrada(LocalDate.now()).build();
         mockMvc.perform(post("/citas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoCita)))
@@ -57,7 +58,7 @@ public class ComandoControladorCitaTest {
 
     @Test
     public void validaCrearCitaIncrementoValorPorDiaFestivoTest() throws Exception {
-        comandoCita = new ComandoCitaTestDataBuilder().conFechaEntrada(LocalDate.of(2021, 05, 01)).build();
+        comandoCita = new ComandoCitaTestDataBuilder().conFechaEntrada(LocalDate.of(2021, 05, 17)).build();
 
         mockMvc.perform(post("/citas")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -65,7 +66,7 @@ public class ComandoControladorCitaTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 11}"));
     }
-/*
+
     @Test
     public void validaExisteUnaCitaProgramadaParaLaPlacaEnLaFechaTest() throws Exception {
         comandoCita = new ComandoCitaTestDataBuilder().conPlacaVehiculo("KIP059").build();
@@ -75,10 +76,9 @@ public class ComandoControladorCitaTest {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     public void validaExisteUnaCitaProgramadaEnLaMismaHoraTest() throws Exception {
-        comandoCita = new ComandoCitaTestDataBuilder().conPlacaVehiculo("KIP059")//.conFechaEntrada(LocalDate.now().plusDays(1))
+        comandoCita = new ComandoCitaTestDataBuilder().conPlacaVehiculo("KIP059")
                 .conHoraEntrada(LocalTime.of(9, 05))
                 .conHoraSalida(LocalTime.of(9, 05))
                 .build();
@@ -87,5 +87,4 @@ public class ComandoControladorCitaTest {
                 .content(objectMapper.writeValueAsString(comandoCita)))
                 .andExpect(status().isBadRequest());
     }
- */
 }

@@ -12,12 +12,11 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 @Getter
 public class Cita {
 
-    private static final String FEHCHA_SALIDA_MAYOR_FECHA_ENTRADA = "La fecha de salida debe ser mayor a la fecha de entrada.";
-    private static final String FECHA_ENTRADA_MAYOR_QUE_FECHA_REGISTRO = "El sistema solo permite fechas de salidas superiores a hoy.";
+    private static final String FECHA_ENTRADA_MENOR_QUE_FECHA_REGISTRO = "El sistema solo permite fechas de entrada superiores a hoy.";
+    private static final String FEHCHA_SALIDA_MENOR_QUE_FECHA_REGISTRO = "La fecha de salida debe ser mayor a la fecha de hoy.";
     private static final String VALOR_MAYOR_CERO = "El Valor de la cita NO puede ser igual o menor a Cero (0).";
     private static final String HORA_ENTRADA_RANGO_VALIDO = "La hora debe estar en el rango de ";
     private static final Integer INCREMENTO_VALOR_DIA_FESTIVO = 2;
-    private static final Integer CANTIDAD_NUMERO = 2;
 
     private Long id;
     private String placaVehiculo;
@@ -31,8 +30,8 @@ public class Cita {
 
     public Cita(Long id, String placaVehiculo, String idclilente, LocalDate fechaEntrada, LocalTime horaEntrada, LocalDate fechaSalida, LocalTime horaSalida, Double valor) {
 
-        fechaEntradaMayorQueFechaRegistro(fechaEntrada, FECHA_ENTRADA_MAYOR_QUE_FECHA_REGISTRO);
-        fechaSalidaMayorQueFechaRegistro(fechaSalida, FEHCHA_SALIDA_MAYOR_FECHA_ENTRADA);
+        fechaEntradaMayorQueFechaRegistro(fechaEntrada, FECHA_ENTRADA_MENOR_QUE_FECHA_REGISTRO);
+        fechaSalidaMayorQueFechaRegistro(fechaSalida, FEHCHA_SALIDA_MENOR_QUE_FECHA_REGISTRO);
         horaEntradaRangoValido(horaEntrada, horaSalida, HORA_ENTRADA_RANGO_VALIDO);
         valorDiferenteNuloMayorCero(valor, VALOR_MAYOR_CERO);
 
@@ -45,13 +44,11 @@ public class Cita {
         this.fechaSalida = fechaSalida;
         this.horaSalida = horaSalida;
         this.valor = valor;
-        incrementaDiaCitaProgramada();
-        duplicaValorPorDiaFestivo();
     }
 
     public void incrementaDiaCitaProgramada() {
-        this.fechaEntrada = this.fechaEntrada.plusDays(1).plusDays(ServicioCalendario.diaHabilCalendario(this.fechaEntrada));
-        this.fechaSalida = this.fechaSalida.plusDays(1).plusDays(ServicioCalendario.diaHabilCalendario(this.fechaSalida));
+        this.fechaEntrada = this.fechaEntrada.plusDays(ServicioCalendario.diaHabilCalendario(this.fechaEntrada));
+        this.fechaSalida = this.fechaSalida.plusDays(ServicioCalendario.diaHabilCalendario(this.fechaSalida));
     }
 
     public void duplicaValorPorDiaFestivo() {
