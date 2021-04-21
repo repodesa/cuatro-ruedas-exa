@@ -20,7 +20,7 @@ public class ValidadorArgumento {
     public static final int HORA_FINAL_VALIDA = 17;
     public static final int MINUTO_INICIAL_VALIDA = 0;
     public static final int MINUTO_FINAL_VALIDA = 59;
-    private static final String HORA_ENTRADA_MAYOR_HORA_SALIDA = "No se permiten registrar horas de entradas posteriores a las horas de salidas o viceversa.";
+    private static final String HORA_ENTRADA_MAYOR_HORA_SALIDA = "El sistema no permite registrar horas de entradas inferiores a la hora de salida o viceversa.";
     private static final String DEFINA_UN_HORARIO_PARA_LA_CITA = "El horario para la agenda debe ser definido.";
 
     private ValidadorArgumento() {
