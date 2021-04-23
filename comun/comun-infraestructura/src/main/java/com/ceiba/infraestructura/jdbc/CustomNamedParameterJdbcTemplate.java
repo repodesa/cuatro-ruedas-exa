@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.sql.SQLException;
 
 @Repository
 public class CustomNamedParameterJdbcTemplate {
@@ -23,27 +22,18 @@ public class CustomNamedParameterJdbcTemplate {
     }
 
     public Long crear(Object object, String sql) {
-        System.out.println("Paso x4");
         MapSqlParameterSource paramSource = crearParametros(object);
-        System.out.println("Paso x5");
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        System.out.println("Paso x6");
         this.namedParameterJdbcTemplate.update(sql, paramSource, keyHolder, new String[]{"id"});
-        System.out.println("Paso x7 := ");
         return keyHolder.getKey().longValue();
     }
 
     /*
         public Object crearA(Object object, String sql) {
-            System.out.println("Paso x4");
             MapSqlParameterSource paramSource = crearParametros(object);
-            System.out.println("Paso x5");
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            System.out.println("Paso x6");
             this.namedParameterJdbcTemplate.update(sql, paramSource, keyHolder, new String[]{"id"});
-            System.out.println("Paso x7 := "+keyHolder.getKeys());
             return keyHolder.getKeys();
-
         }
     */
     public int crearA(Object object, String sql) {
