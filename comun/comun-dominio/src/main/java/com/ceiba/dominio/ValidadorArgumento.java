@@ -107,14 +107,14 @@ public class ValidadorArgumento {
     }
 
     // Validaciones Clase Cita
-    public static void fechaEntradaMayorQueFechaRegistro(LocalDate agenfeen, String mensaje) {
+    public static void validarFechaRegistro(LocalDate agenfeen, String mensaje) {
         if (agenfeen.isBefore(LocalDate.now())) {
             throw new ExcepcionFechaHora(mensaje);
         }
     }
 
-    public static void fechaSalidaMayorQueFechaRegistro(LocalDate agenfesa, String mensaje) {
-        if (agenfesa.isBefore(LocalDate.now())) {
+    public static void superaFechaRegistro(LocalDate agenfeen, String mensaje) {
+        if (agenfeen.isAfter(LocalDate.now())) {
             throw new ExcepcionFechaHora(mensaje);
         }
     }

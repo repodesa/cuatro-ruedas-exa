@@ -1,0 +1,1 @@
+select id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,fecha_creacion, fecha_nacimiento, direccion from cliente

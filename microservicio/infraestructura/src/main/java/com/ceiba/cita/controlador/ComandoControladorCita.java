@@ -1,8 +1,8 @@
 package com.ceiba.cita.controlador;
 
 import com.ceiba.ComandoRespuesta;
-import com.ceiba.usuario.comando.ComandoCita;
-import com.ceiba.usuario.comando.manejador.ManejadorCrearCita;
+import com.ceiba.cita.comando.ComandoCita;
+import com.ceiba.cita.comando.manejador.ManejadorCrearCita;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

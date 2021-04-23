@@ -20,8 +20,9 @@ public class ManejadorCrearUsuario implements ManejadorComandoRespuesta<ComandoU
         this.servicioCrearUsuario = servicioCrearUsuario;
     }
 
-    public ComandoRespuesta<Long> ejecutar(ComandoUsuario comandoUsuario) {
-        Usuario usuario = this.fabricaUsuario.crear(comandoUsuario);
+    @Override
+    public ComandoRespuesta<Long> ejecutar(ComandoUsuario comando) {
+        Usuario usuario = this.fabricaUsuario.crear(comando);
         return new ComandoRespuesta<>(this.servicioCrearUsuario.ejecutar(usuario));
     }
 }

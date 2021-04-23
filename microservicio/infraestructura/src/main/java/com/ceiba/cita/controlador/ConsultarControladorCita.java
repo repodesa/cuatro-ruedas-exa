@@ -1,6 +1,6 @@
 package com.ceiba.cita.controlador;
 
-import com.ceiba.usuario.consulta.ManejadorListarCitas;
+import com.ceiba.cita.consulta.ManejadorListarCitas;
 import com.ceiba.cita.modelo.dto.DtoCita;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

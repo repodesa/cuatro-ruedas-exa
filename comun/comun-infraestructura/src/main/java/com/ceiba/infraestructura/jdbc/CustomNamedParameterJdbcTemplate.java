@@ -1,17 +1,15 @@
 package com.ceiba.infraestructura.jdbc;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-
 import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.sql.SQLException;
 
 @Repository
 public class CustomNamedParameterJdbcTemplate {
@@ -25,10 +23,32 @@ public class CustomNamedParameterJdbcTemplate {
     }
 
     public Long crear(Object object, String sql) {
+        System.out.println("Paso x4");
         MapSqlParameterSource paramSource = crearParametros(object);
+        System.out.println("Paso x5");
         KeyHolder keyHolder = new GeneratedKeyHolder();
+        System.out.println("Paso x6");
         this.namedParameterJdbcTemplate.update(sql, paramSource, keyHolder, new String[]{"id"});
+        System.out.println("Paso x7 := ");
         return keyHolder.getKey().longValue();
+    }
+
+    /*
+        public Object crearA(Object object, String sql) {
+            System.out.println("Paso x4");
+            MapSqlParameterSource paramSource = crearParametros(object);
+            System.out.println("Paso x5");
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            System.out.println("Paso x6");
+            this.namedParameterJdbcTemplate.update(sql, paramSource, keyHolder, new String[]{"id"});
+            System.out.println("Paso x7 := "+keyHolder.getKeys());
+            return keyHolder.getKeys();
+
+        }
+    */
+    public int crearA(Object object, String sql) {
+        MapSqlParameterSource paramSource = crearParametros(object);
+        return this.namedParameterJdbcTemplate.update(sql, paramSource);
     }
 
     public void actualizar(Object object, String sql) {

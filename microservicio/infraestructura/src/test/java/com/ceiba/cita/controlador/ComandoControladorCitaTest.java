@@ -1,14 +1,9 @@
 package com.ceiba.cita.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.ComandoRespuesta;
 import com.ceiba.cita.servicio.testdatabuilder.ComandoCitaTestDataBuilder;
-import com.ceiba.usuario.comando.ComandoCita;
-import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ceiba.cita.comando.ComandoCita;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.jni.Local;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultHandler;
 
 
 import java.time.LocalDate;

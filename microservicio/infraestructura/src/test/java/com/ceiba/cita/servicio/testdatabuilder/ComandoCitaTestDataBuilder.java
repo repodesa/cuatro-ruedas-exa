@@ -1,6 +1,6 @@
 package com.ceiba.cita.servicio.testdatabuilder;
 
-import com.ceiba.usuario.comando.ComandoCita;
+import com.ceiba.cita.comando.ComandoCita;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
