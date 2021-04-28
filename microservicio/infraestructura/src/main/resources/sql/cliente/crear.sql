@@ -1,0 +1,2 @@
+insert into cliente (id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_creacion, fecha_nacimiento, direccion)
+values(:id,:primerNombre,:segundoNombre,:primerApellido,:segundoApellido,:fechaRegistro,:fechaNacimiento,:direccion)

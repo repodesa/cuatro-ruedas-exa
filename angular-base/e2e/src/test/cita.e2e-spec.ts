@@ -6,14 +6,14 @@ describe('espacio de trabajo - proejcto cita', () => {
     let pagina: AppPage;
     let barra: NavbarPage;
     let cita: CitaPage;
-    let cantidadRegistros:any;
+    let cantidadRegistros: any;
     beforeEach(() => {
         pagina = new AppPage();
         barra = new NavbarPage();
         cita = new CitaPage();
     });
 
-    afterEach(()=>{
+    afterEach(() => {
         cantidadRegistros = cantidadRegistros;
     });
 
@@ -46,7 +46,7 @@ describe('espacio de trabajo - proejcto cita', () => {
         cita.ingresarValor(VALOR);
 
         cita.clicBotonRegistrarCita();
-        
+
         expect(cantidadRegistros).toBeGreaterThan(cita.contarCitas());
     });
 });

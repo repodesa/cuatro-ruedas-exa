@@ -31,6 +31,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         CODIGOS_ESTADO.put(ExcepcionTecnica.class.getSimpleName(), HttpStatus.INTERNAL_SERVER_ERROR.value());
         //en caso de tener otra excepcion matricularla aca
         CODIGOS_ESTADO.put(ExcepcionFechaHora.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionRegistroNoExiste.class.getSimpleName(),HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(Exception.class)

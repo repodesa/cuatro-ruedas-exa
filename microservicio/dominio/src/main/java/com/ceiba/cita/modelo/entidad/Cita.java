@@ -30,8 +30,8 @@ public class Cita {
 
     public Cita(Long id, String placaVehiculo, String idclilente, LocalDate fechaEntrada, LocalTime horaEntrada, LocalDate fechaSalida, LocalTime horaSalida, Double valor) {
 
-        fechaEntradaMayorQueFechaRegistro(fechaEntrada, FECHA_ENTRADA_MENOR_QUE_FECHA_REGISTRO);
-        fechaSalidaMayorQueFechaRegistro(fechaSalida, FEHCHA_SALIDA_MENOR_QUE_FECHA_REGISTRO);
+        validarFechaRegistro(fechaEntrada, FECHA_ENTRADA_MENOR_QUE_FECHA_REGISTRO);
+        validarFechaRegistro(fechaSalida, FEHCHA_SALIDA_MENOR_QUE_FECHA_REGISTRO);
         horaEntradaRangoValido(horaEntrada, horaSalida, HORA_ENTRADA_RANGO_VALIDO);
         valorDiferenteNuloMayorCero(valor, VALOR_MAYOR_CERO);
 

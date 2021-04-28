@@ -23,7 +23,7 @@ pipeline {
 				echo "------------>Checkout<------------"
 				checkout([
 					$class: 'GitSCM',
-					branches: [[name: '*/master']], // Cambiar por la rama definida en el repositorio
+					branches: [[name: '*/devel']], // Cambiar por la rama definida en el repositorio
 					doGenerateSubmoduleConfigurations: false,
 					extensions: [],
 					gitTool: 'Default',
